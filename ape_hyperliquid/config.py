@@ -1,6 +1,8 @@
-from typing import ClassVar
+from typing import TYPE_CHECKING, ClassVar
 
-from ape.types import GasLimit
+if TYPE_CHECKING:
+    from ape.types import GasLimit
+
 from ape_ethereum.ecosystem import BaseEthereumConfig, NetworkConfig
 from ape_ethereum.transactions import TransactionType as EthTransactionType
 
@@ -25,7 +27,7 @@ def _create_config(
 
 class HyperliquidConfig(BaseEthereumConfig):
     DEFAULT_TRANSACTION_TYPE: ClassVar[int] = EthTransactionType.STATIC.value
-    DEFAULT_LOCAL_GAS_LIMIT: ClassVar[GasLimit] = LOCAL_GAS_LIMIT
+    DEFAULT_LOCAL_GAS_LIMIT: ClassVar["GasLimit"] = LOCAL_GAS_LIMIT
     mainnet: NetworkConfig = _create_config()
     testnet: NetworkConfig = _create_config()
     builder_code: str = "ApeWorX Builder Code"

@@ -31,7 +31,7 @@ class InternalTransaction(StaticFeeTransaction):
     type: int = Field(default=INTERNAL_TRANSACTION_TYPE, exclude=True)
 
 
-class ApeArbitrumError(ApeException):
+class ApeHyperliquidError(ApeException):
     """
     Raised in the ape-hyperliquid plugin.
     """
@@ -92,7 +92,7 @@ class HyperliquidReceipt(Receipt):
 class HyperEVM(Ethereum):
     @property
     def config(self) -> HyperliquidConfig:  # type: ignore[override]
-        return cast(HyperliquidConfig, self.config_manager.get_config("hyperliquid"))
+        return cast(HyperliquidConfig, self.config_manager.get_config("hyperliquid"))  # noqa: TC006
 
     def create_transaction(self, **kwargs) -> TransactionAPI:
         """
@@ -243,7 +243,7 @@ class HyperEVM(Ethereum):
         if block_number is None:
             raise ValueError("Block number cannot be None")
 
-        return ArbitrumReceipt(
+        return HyperliquidReceipt(
             block_number=block_number,
             contract_address=data.get("contract_address") or data.get("contractAddress"),
             gas_limit=data.get("gas", data.get("gas_limit", data.get("gasLimit"))) or 0,
