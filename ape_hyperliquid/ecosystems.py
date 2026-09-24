@@ -12,8 +12,8 @@ from ape_ethereum.transactions import (
     Receipt,
     StaticFeeTransaction,
     TransactionStatusEnum,
+    TransactionType as EthTransactionType,
 )
-from ape_ethereum.transactions import TransactionType as EthTransactionType
 from eth_pydantic_types import HexBytes
 from pydantic.fields import Field
 
