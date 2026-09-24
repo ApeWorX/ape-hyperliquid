@@ -54,18 +54,17 @@ def __getattr__(name: str):
 
         return HyperEVM
 
-    elif name == "HyperliquidConfig":
+    if name == "HyperliquidConfig":
         from .config import HyperliquidConfig
 
         return HyperliquidConfig
 
-    elif name == "NETWORKS":
+    if name == "NETWORKS":
         from .ecosystems import NETWORKS
 
         return NETWORKS
 
-    else:
-        raise AttributeError(name)
+    raise AttributeError(name)
 
 
 __all__ = [
