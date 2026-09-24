@@ -22,7 +22,7 @@ def accounts():
 
 
 @pytest.fixture
-def Contract():
+def Contract():  # noqa: N802
     return ape.Contract
 
 
