@@ -12,8 +12,8 @@ from ape_ethereum.transactions import (
     Receipt,
     StaticFeeTransaction,
     TransactionStatusEnum,
+    TransactionType as EthTransactionType,
 )
-from ape_ethereum.transactions import TransactionType as EthTransactionType
 from eth_pydantic_types import HexBytes
 from pydantic.fields import Field
 
@@ -38,7 +38,7 @@ class ApeHyperliquidError(ApeException):
 
 
 class HyperliquidReceipt(Receipt):
-    gas_used_for_L1: HexInt = Field(default=0, alias="gasUsedForL1")
+    gas_used_for_L1: HexInt = Field(default=0, alias="gasUsedForL1")  # noqa: N815
 
     def await_confirmations(self) -> "ReceiptAPI":
         """
